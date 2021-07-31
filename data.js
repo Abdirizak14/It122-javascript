@@ -8,6 +8,9 @@ let movies = [
     {title: "The occupant", director:"Alex pastor", type:"scientific", year:2021},
 ];
 
-exports.getAll = () => {
+exports.getAll = function getAll() {
     return movies;
-};
+}
+//exports.getItem =title getItem() {
+   // const movie =movies.find(movies => movies.director)  
+//}

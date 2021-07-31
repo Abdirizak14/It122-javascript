@@ -7,7 +7,7 @@ http.createServer(function(req,res){
   switch(path) {
     case '/': 
         res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.end('Home Page.' + 'the movies array has: ' + allMovies.length + ' movies');
+        res.end('Home Page.' + 'these are my movies: ' + allMovies + ' movies');
     break;
     case '/about':
       res.writeHead(200, {'Content-Type': 'text/plain'});
@@ -19,3 +19,5 @@ http.createServer(function(req,res){
   }
   
 }).listen(process.env.PORT || 3000);
+
+
