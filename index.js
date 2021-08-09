@@ -21,6 +21,7 @@
 // }).listen(process.env.PORT || 3000);
 
 
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const movies = require('./data');
@@ -29,6 +30,7 @@ const app = express();
 
 //Parsing the data
 app.use(bodyParser.json());
+app.set('port', process.env.PORT || 3000);
 app.use(express.urlencoded({extended: false}));
 
 const exphbs = require('express-handlebars');
