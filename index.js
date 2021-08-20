@@ -26,7 +26,46 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const movies = require('./data');
 const app = express();
+const mongoose = require('mongoose');
+const moviesMongo= require('./modules/moviesProject');
+//import cors from 'cors';
+app.use('/api', require('cors')()); // set Access-Control-Allow-Origin header for api route
+app.get('/api/movies', (req, res) => {
+  console.log (moviesMongo)
+  return moviesMongo.find({}).lean()
+    .then((movies) => {
+        // res.json sets appropriate status code and response header
+        res.json(movies);
+    })
+    .catch(err => {return res.status(500).send('Error occurred: database error.')});
+});
 
+app.get('/api/movies/:title', (req,res) => {
+  const movie = movie.getItem(req.params.title); // return a single movie
+  if (moviesMongo) {
+    // res.json sets appropriate status code and response header
+    res.json(movie);
+  } else {
+    return res.status(500).send('Database Error occurred');
+  }
+});
+app.get('/api/delete/:id', (req, res) => {
+  const itemId = req.params.id;
+  records.deleteOne({_id: itemId})
+  .exec()
+  .then(result => {
+      res.json(result);
+  })
+  .catch(err => {
+      console.log(err);
+      res.status(500).json({
+          error: err
+      });
+  });
+});
+
+
+console.log ('./connect', moviesMongo);
 
 //Parsing the data
 app.use(bodyParser.json());
